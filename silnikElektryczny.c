@@ -1,7 +1,6 @@
 #include "silnikElektryczny.h"
 
 #include <math.h>
-#include <stdbool.h>
 
 static double szerokosc;//szerokość ramki [m]
 static double wysokosc;//długość ramki [m]
@@ -27,8 +26,8 @@ static double W;
 //przyspieszenieKatowe
 static double przyspieszenieKatowe;
 
-//zmienna logiczna która sprawdza czy dane zostały wprowadzone
-static bool czySaDane = false;
+
+//OBLICZENIA
 
 static double komutator(double alfa1, double I1) {
     if (sin(alfa1) >= 0) {
@@ -49,7 +48,6 @@ static void obliczMomentBezwładności() {
 
 static void obliczMomentSiły() {
     M = N*komutator(alfa, I)*(szerokosc*wysokosc)*B*sin(alfa);
-
 }
 
 static void obliczPrzyspieszenieKatowe() {
@@ -60,17 +58,17 @@ static void obliczPrzyspieszenieKatowe() {
     alfa = alfa + W*Tkrok;
 }
 
-int czyCzasSieSkonczyl() {
-    return T<=Tmax;
-}
-
 void oblicz() {
-    if (!czySaDane) return;
     obliczMomentSiły();
     obliczPrzyspieszenieKatowe();
 
     T = T + Tkrok;
 }
+
+int czyCzasSieSkonczyl() {
+    return T<=Tmax;
+}
+//DOSTAWANIE I ZMIENIANIE DANYCH
 
 double dajPrzyspieszenieKatowe() {
     return przyspieszenieKatowe;
@@ -139,6 +137,9 @@ void ustawMasa(double noweMasa) {
     obliczMomentBezwładności();
 }
 
+
+//INICJALIZACJA WSTAWIANIE DANYCH
+
 void init(
     double szerokość,
     double wysokość,
@@ -159,6 +160,5 @@ void init(
     T = 0;
     Tmax = czasTrwania;
 
-    czySaDane = true;
     obliczMomentBezwładności();
 }

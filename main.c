@@ -15,6 +15,9 @@ int main(void) {
         oblicz();
         fprintf(fptr,"%.2f \t %f \t %f \t %f \t %f \t %f\n", dajT(), dajM(), dajPrzyspieszenieKatowe(), dajW(), fmod(dajAlfa(), 360.0), dajW()*60/(2.0*3.14));
 
+
+
+        //test
     }
 
 

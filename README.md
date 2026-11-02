@@ -100,6 +100,9 @@ static double komutator(double alfa1, double I1) {
 w tej funkcji obliczamy też prędkość kątową i kąt obrotu ramki w następnym kroku
 $$
 \omega _{i+1} = \omega_i + \varepsilon_i \cdot \Delta t
+$$
+
+$$
 \alpha _{i+1} = \alpha_i + \omega_i \cdot \Delta t
 $$
 ```
